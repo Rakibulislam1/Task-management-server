@@ -5,8 +5,16 @@ const cors = require("cors");
 const port = process.env.PORT || 5000;
 
 // middleware
-app.use(cors());
+app.use(cors({
+  credentials:true,
+  origin:[
+    'https://task-management-platform-113e9.web.app/' ||
+    'https://task-management-platform-113e9.firebaseapp.com/' ||
+    'http://localhost:5173/'
+  ]
+}));
 app.use(express.json());
+
 
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.v6vphhi.mongodb.net/?retryWrites=true&w=majority`;
